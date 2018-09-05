@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PR_IT_001" thread-count="1" parallel="false">
+    <test name="PR_IT_001 Purchase item test">
+
+        <parameter name="platform" value="web" />
+
+        <classes>
+            <class name="com.testing.blibli.SetUp"/>
+            <class name="com.testing.blibli.Home">
+                <methods>
+                    <include name="Search">
+                        <parameter name = "input" value="baju muslim wanita"/>
+                    </include>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.Search">
+                <methods>
+                    <include name = "Sort" >
+                        <parameter name = "input" value="produk terpopuler"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
