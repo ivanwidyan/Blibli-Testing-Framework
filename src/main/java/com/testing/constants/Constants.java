@@ -15,4 +15,6 @@ public class Constants {
 
     public final static int FIRST_INDEX = 0;
     public final static int SECOND_INDEX = 1;
+
+    public final static int SEVENTH_INDEX = 6;
 }

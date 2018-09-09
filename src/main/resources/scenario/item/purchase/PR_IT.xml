@@ -1,26 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="PR_IT_001" thread-count="1" parallel="false">
-    <test name="PR_IT_001 Purchase item test">
+<suite name="PR_IT" thread-count="1" parallel="false">
+    <test enabled="false" name="PR_IT_001 Purchase jaket kulit, select Kalong brand,
+                price min 1.000.000, Location Bogor,
+                order by Harga Termurah, Select first item,
+                pick first size, quantity 1, buy now, pay with transfer BankBNI,
+                print payment code">
 
         <parameter name="platform" value="web" />
 
         <classes>
-            <class name="com.testing.blibli.SetUp"/>
+            <class name="com.testing.SetUp"/>
+            <class name="com.testing.blibli.SplashScreen"/>
             <class name="com.testing.blibli.Home">
                 <methods>
                     <include name="Search">
-                        <parameter name = "input" value="baju muslim wanita"/>
+                        <parameter name = "input" value="jaket kulit"/>
                     </include>
                 </methods>
             </class>
             <class name="com.testing.blibli.Search">
                 <methods>
+                    <include name = "Brand" >
+                        <parameter name = "input" value="Kalong"/>
+                    </include>
+                    <include name = "Price" >
+                        <parameter name = "min" value="1000000"/>
+                    </include>
+                    <include name = "Location" >
+                        <parameter name = "input" value="Bogor"/>
+                    </include>
                     <include name = "Sort" >
-                        <parameter name = "input" value="produk terpopuler"/>
+                        <parameter name = "input" value="Harga termurah"/>
+                    </include>
+                    <include name="Select"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.Summary">
+                <methods>
+                    <include name="PickSize"/>
+                    <include name="BuyNow"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.Login"/>
+            <class name="com.testing.blibli.purchase.Delivery">
+                <methods>
+                    <include name="ChooseCourrier"/>
+                    <include name="ContinueToPayment"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.Payment">
+                <methods>
+                    <include name = "Transfer" >
+                        <parameter name = "input" value="BankBNI"/>
+                    </include>
+                    <include name="PayNow"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.ThankYou"/>
+        </classes>
+    </test>
+
+    <test enabled="true" name="PR_IT_002 Purchase tas laptop, select Tucano brand,
+                price range between 300.000 - 1.000.000,
+                order by Produk Terpopuler, Select first item,
+                quantity 1, buy now, pay with Indomaret, print payment code">
+
+        <parameter name="platform" value="android" />
+
+        <classes>
+            <class name="com.testing.SetUp"/>
+            <class name="com.testing.blibli.SplashScreen"/>
+            <class name="com.testing.blibli.Home">
+                <methods>
+                    <include name="Search">
+                        <parameter name = "input" value="tas laptop"/>
                     </include>
                 </methods>
             </class>
+            <class name="com.testing.blibli.Search">
+                <methods>
+                    <include name = "Brand" >
+                        <parameter name = "input" value="Tucano"/>
+                    </include>
+                    <include name = "Price" >
+                        <parameter name = "min" value="300000"/>
+                        <parameter name = "max" value="1000000"/>
+                    </include>
+                    <include name = "Sort" >
+                        <parameter name = "input" value="Produk Terpopuler"/>
+                    </include>
+                    <include name="Select"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.Summary">
+                <methods>
+                    <include name="BuyNow"/>
+                    <include name="AddQuantity">
+                        <parameter name = "input" value="1"/>
+                    </include>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.Delivery">
+                <methods>
+                    <include name="ContinueToPayment"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.Login"/>
+            <class name="com.testing.blibli.purchase.Checkout"/>
+            <class name="com.testing.blibli.purchase.Payment">
+                <methods>
+                    <include name = "Indomaret" />
+                    <include name="PayNow"/>
+                </methods>
+            </class>
+            <class name="com.testing.blibli.purchase.ThankYou"/>
         </classes>
     </test>
 

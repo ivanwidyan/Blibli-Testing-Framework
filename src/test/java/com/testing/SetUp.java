@@ -5,15 +5,13 @@
  * Email: ivanwidyan@yahoo.com
  */
 
-package com.testing.blibli;
+package com.testing;
 
-import com.testing.Handler;
+import com.testing.blibli.constants.BlibliConfigConstants;
 import com.testing.constants.ConfigConstants;
 import com.testing.logging.Log;
-import com.testing.blibli.constants.BlibliConfigConstants;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
@@ -35,28 +33,33 @@ public class SetUp {
 
         String info = "";
 
-        Log.Error("Test " + platform);
+        Log.Debug("Test platform: " + platform);
 
-        if (platform.equalsIgnoreCase("android")) {
+        if (platform.equalsIgnoreCase(ConfigConstants.PLATFORM_ANDROID)) {
             if (com.testing.Handler.GetCurrentAppiumDriver() == null) {
                 if (devicename == null)
-                    devicename = BlibliConfigConstants.DEVICE_NAME;
+                    devicename = ConfigConstants.DEVICE_NAME;
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability(ConfigConstants.CAPABILITIES_DEVICE_NAME, devicename);
-                capabilities.setCapability(CapabilityType.BROWSER_NAME, BlibliConfigConstants.BROWSER_NAME);
-                capabilities.setCapability(ConfigConstants.CAPABILITIES_PLATFORM_NAME, BlibliConfigConstants.PLATFORM_NAME);
-                capabilities.setCapability(ConfigConstants.CAPABILITIES_APP_PACKAGE, BlibliConfigConstants.APP_PACKAGE);
-                capabilities.setCapability(ConfigConstants.CAPABILITIES_APP_ACTIVITY, BlibliConfigConstants.APP_ACTIVITY);
+
+                capabilities.setCapability(ConfigConstants.CAPABILITIES_PLATFORM_NAME,
+                        ConfigConstants.PLATFORM_ANDROID);
+
+                capabilities.setCapability(ConfigConstants.CAPABILITIES_APP_PACKAGE,
+                        BlibliConfigConstants.APP_PACKAGE);
+
+                capabilities.setCapability(ConfigConstants.CAPABILITIES_APP_ACTIVITY,
+                        BlibliConfigConstants.APP_ACTIVITY);
 
                 if (udid != null)
                     capabilities.setCapability(ConfigConstants.CAPABILITIES_UDID, udid);
 
                 if (ip == null)
-                    ip = BlibliConfigConstants.DEFAULT_IP;
+                    ip = ConfigConstants.DEFAULT_IP;
 
                 if (port == null)
-                    port = BlibliConfigConstants.DEFAULT_PORT;
+                    port = ConfigConstants.DEFAULT_PORT;
 
                 String url = "http://" + ip + ":" + port + "/wd/hub";
                 Handler.SetCurrentAppiumDriver(new AndroidDriver(new URL(url), capabilities));
@@ -69,16 +72,16 @@ public class SetUp {
                 info = "Duplicate Appium driver in the same thread";
                 Log.Error(info);
             }
-        } else if (platform.equalsIgnoreCase("web")) {
-//            System.setProperty("webdriver.gecko.driver", "/Users/ivanwidyan/Desktop/Ivan-Widyan/Tools/GeckoDriver/geckodriver");
-            System.setProperty("webdriver.gecko.driver", "/lib/geckodriver-v0.21.0/geckodriver.exe");
+
+        } else if (platform.equalsIgnoreCase(ConfigConstants.PLATFORM_WEB)) {
+            System.setProperty(ConfigConstants.GECKO_DRIVER_PROPERTY,
+                    ConfigConstants.GECKO_DRIVER_PATH);
             Handler.SetCurrentWebDriver(new FirefoxDriver());
 
-            Handler.GetCurrentWebDriver().manage().timeouts().implicitlyWait(ConfigConstants.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+            Handler.GetCurrentWebDriver().manage().timeouts().implicitlyWait(
+                    ConfigConstants.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-            String url = "https://www.blibli.com";
-
-            Handler.GetCurrentWebDriver().get(url);
+            Handler.GetCurrentWebDriver().get(BlibliConfigConstants.URL);
         }
     }
 
