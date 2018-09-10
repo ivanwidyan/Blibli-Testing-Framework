@@ -29,7 +29,7 @@ public class Home {
     public void Search (String platform, String input) {
         if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
 
-            Utility.Delay(3);
+            Utility.Delay(10);
             Utility.TapByCoordinates(490, 280);
 
             Utility.SendKeysElementById(

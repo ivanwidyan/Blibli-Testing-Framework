@@ -31,7 +31,7 @@ public class ConfigConstants {
     public final static String CAPABILITIES_APP_ACTIVITY = "appActivity";
 
     // Webdriver timeout
-    public final static long DEFAULT_TIMEOUT = 60;
+    public final static long DEFAULT_TIMEOUT = 120;
     public final static long NO_TIMEOUT = 0;
     public final static long SWIPE_DURATION = 250;
 

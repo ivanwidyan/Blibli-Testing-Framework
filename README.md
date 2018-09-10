@@ -1,11 +1,11 @@
-## Traveloka-Testing-Framework
-Testing Framework for Traveloka Android and Web App
+## Blibli-Testing-Framework
+Testing Framework for Blibli Android and Web App
 
-[![traveloka-icon](https://user-images.githubusercontent.com/12959761/44567746-109a0200-a79e-11e8-8e57-8bed67ac3087.png)](https://www.traveloka.com/en/)
+[![traveloka-icon](https://user-images.githubusercontent.com/12959761/45268447-c6f02d80-b4a6-11e8-9ed3-f59ca323cfe0.png)](https://www.blibli.com/)
 
-This Traveloka framework is Java implementation of the [Appium](https://github.com/appium/appium)
+This Blibli framework is Java implementation of the [Appium](https://github.com/appium/appium)
 framework and [Selenium](https://github.com/SeleniumHQ/selenium) software-testing framework with [TestNG](https://github.com/cbeust/testng) 
-testing framework to create easy automate testing for Traveloka Android Application which written in Java & XML.
+testing framework to create easy automate testing for Blibli Android Application which written in Java & XML.
 
 This testing framework is applying the automation build using [Maven](https://maven.apache.org/) and [Jenkins](https://jenkins.io/) 
 with GitHub to help manage the deployment process so continuous integration for testing can be achieved.
@@ -34,6 +34,8 @@ Included in `pom.xml` for maven dependency
 * Wait Click Elements By ID, ClassName, XPath, CSSSelector (Support Index)
 * Tap By Coordinates
 * Swipe Vertically, Horizontally, & By Coordinates
+* WaitInvisibilityByCssSelector
+* Delay
 
 ### Suites Capabilities:
 * Test Suites (Collection of Test Cases)
@@ -42,47 +44,55 @@ Included in `pom.xml` for maven dependency
 * Multiplatform Parallel Execution Test (e.g. Android & Web at the same time)
 
 ### Functionality Capabilities:
-**Splash Screen: (Android Only)**
-* Select Country & Language
+**Splash Screen: (Android & Web)**
 * Skip Splash Screen
 
 **Home: (Android & Web)**
-* Navigate to Flights
-* Navigate to Log In and Register
+* Search
+* Kategori Belanja
 
-**Member: (Android & Web)**
-* Click Log In & Register
+**Search: (Android & Web)**
+* Sort / Order By
+* Filter by Brand
+* Filter by Price
+* Filter by Seller Location
+* Select
+* Print Item List
 
 **Login: (Android & Web)**
-* Login with Email, Facebook, & Google
+* Login with Username & Password
 
-**Search Flights: (Android & Web)**
-* Set Origin, Destination, Departure Date, Passenger, Seat Class, & Return Date
-* Swap Origin & Destination
-* Return Switch
-* Search Flights
+**Summary: (Android & Web)**
+* Pick Size
+* Add Quantity
+* Add to Cart
+* Buy Now
 
-**Select Flight: (Android & Web)**
-* Sort By
-* Print & Select Flight
+**Delivery: (Android & Web)**
+* Choose Courrier
+* Continue to Payment
 
-**Booking Summary: (Android & Web)**
-* Select
-
-**Fill in Details - Book: (Android & Web)**
-* Fill in Contact & Traveler Details
+**Checkout: (Android Only)**
 * Continue
+
+**Payment: (Android & Web)**
+* Transfer
+* Indomaret
+* Pay Now
+
+**ThankYou: (Android & Web)**
+* Print Payment Code (Can be used for tracking order in the database)
 
 ### Examples
 **Flight Purchase:**
-* Selenium, Appium, TestNG Automation - Test FL_PR_001
-[![Example_FL_PR_001](https://user-images.githubusercontent.com/12959761/44569569-0cbdae00-a7a5-11e8-9369-e6dde61e0fac.png)](https://youtu.be/vVNFc6-9pRs)
+* Automation Test for Web app
+[![test_web](https://user-images.githubusercontent.com/12959761/45268861-e179d500-b4ad-11e8-9ec1-7b0245c5d554.png)](https://youtu.be/7npnRPdU-Qs)
 
-* Continuous Integration using Maven & Jenkins with GitHub - Test FL_PR_002 Example_FL_PR_002
-[![Example_FL_PR_002](https://user-images.githubusercontent.com/12959761/44630067-5b746f00-a982-11e8-8fde-02aa9cd91a85.png)](https://youtu.be/6Zx3cgFN-74)
+* Continuous Integration using Jenkins for Android app
+[![test_android_jenkins](https://user-images.githubusercontent.com/12959761/45268873-fd7d7680-b4ad-11e8-80fe-a7473afcc2dd.png)](https://youtu.be/gK7C_G0KfSs)
 
-* Parallel Execution and Multithreading - Test FL_PR_001 & FL_PR_002
-[![Parallel_Test](https://user-images.githubusercontent.com/12959761/44637859-e33b9700-a9dd-11e8-8505-c3403d626536.png)](https://youtu.be/fSANbFw6QFY)
+* Multiplatform Parallel Execution (Multithreading)
+[![multiplatform_parallel_test](https://user-images.githubusercontent.com/12959761/45274445-ac877580-b4e1-11e8-954d-3a66aafdf008.png)](https://youtu.be/FojivtKSU5U)
 
 ### Authors
 Ivan Widyan - Creator & Developer (ivanwidyan@yahoo.com)
