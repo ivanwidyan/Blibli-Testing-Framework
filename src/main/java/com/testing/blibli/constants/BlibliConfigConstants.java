@@ -14,7 +14,7 @@ public class BlibliConfigConstants {
 
     // Web Set up
     public final static String URL = "https://www.blibli.com";
-//    public final static String URL = "https://www.blibli.com/p/kalong-jkd-015-mens-lamb-skin-hearley-jaket-pria/ic--LAT-60028-00162-00001?ds=LAT-60028-00162-00001";
+//    public final static String URL = "https://www.blibli.com/order/checkout";
     public final static long TOOLTIP_TIMEOUT = 5;
 
 }

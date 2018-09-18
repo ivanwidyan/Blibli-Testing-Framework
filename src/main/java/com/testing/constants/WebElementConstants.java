@@ -12,6 +12,10 @@ public class WebElementConstants {
     public final static String CLASS_DIV = "div";
     public final static String CLASS_OPTION= "option";
     public final static String CLASS_BUTTON = "button";
+    public final static String CLASS_SPAN = "span";
+    public final static String CLASS_INPUT = "input";
+    public final static String CLASS_LABEL = "label";
+    public final static String CLASS_B = "b";
 
     // General Parameter
     public final static String PARAM_CLASS = "class";

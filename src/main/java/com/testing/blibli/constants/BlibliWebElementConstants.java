@@ -17,7 +17,12 @@ public class BlibliWebElementConstants {
     public final static String SEARCH_SORT_ELEMENT = "sortSelectElement";
     public final static String SEARCH_PRODUCT_TITLE = "product-title";
     public final static String SEARCH_PRODUCT_PRICE = "product-price";
-    public final static String SEARCH_LOADING = "ajax-loading";
+    public final static String SEARCH_AJAX_LOADING = "ajax-loading";
+
+    // Login
+    public final static String LOGIN_INPUT_EMAIL = "input input--email";
+    public final static String LOGIN_INPUT_PASSWORD = "input input--password";
+    public final static String LOGIN_BUTTON_SUBMIT = "button-submit";
 
     // Sort
     public final static String TEXT_PRODUK_REKOMENDASI = "Produk rekomendasi";
@@ -40,6 +45,7 @@ public class BlibliWebElementConstants {
 
     // Filter - Brand
     public final static String FILTER_BRAND = "search-brand";
+    public final static String FILTER_NAME = "filter-name";
 
     // Filter - Price
     public final static String FILTER_PRICE_MIN = "min-price-filter-input";
@@ -53,16 +59,22 @@ public class BlibliWebElementConstants {
     public final static String SUMMARY_QUANTITY = "quantity__increase";
     public final static String SUMMARY_ADD_TO_CART = "add-to-cart__button";
     public final static String SUMMARY_BUY_NOW = "buy-now__button";
+    public final static String SUMMARY_BELI_SEKARANG = "BELI SEKARANG";
 
     // Delivery
     public final static String DELIVERY_NEXT_STEP = "gdn-next-step";
+    public final static String DELIVERY_LANJUTKAN_KE_PEMBAYARAN = "gdn-next-step";
+    public final static String DELIVERY_COURRIER = "ng-binding bold";
+    public final static String DELIVERY_STANDARD = "Standard";
 
     // Payment
     public final static String PAYMENT_TRANSFER = "gdn-payment-category-Transfer";
     public final static String PAYMENT_INDOMARET = "gdn-payment-category-Indomaret";
     public final static String PAYMENT_CHECKOUT = "gdn-submit-checkout";
+    public final static String PAYMENT_TYPE_NAME = "payment-type-name ng-binding";
 
     // Payment - Transfer
+    public final static String TEXT_TRANSFER = "Transfer";
     public final static String TRANSFER_BANK_BCA = "BankBCA";
     public final static String TRANSFER_BANK_BRI = "BankBRI";
     public final static String TRANSFER_BANK_DANAMON = "BankDanamon";
@@ -71,6 +83,8 @@ public class BlibliWebElementConstants {
     public final static String TRANSFER_BANK_BNI = "BankBNI";
 
     // ThankYou
-    public final static String THANKYOU_LAYER = "layer";
+    public final static String THANKYOU_ORDERNUMBER = "ordernumber";
+    public final static String THANKYOU_TEXT_NOMOR_PESANAN = "Nomor pesanan: ";
+
 
 }

@@ -1,9 +1,12 @@
 package com.testing.blibli.purchase;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.ConfigConstants;
+import com.testing.constants.Constants;
 import com.testing.constants.WebElementConstants;
 import com.testing.logging.Log;
 import org.openqa.selenium.By;
@@ -27,7 +30,7 @@ public class ThankYou {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/continue_btn");
+                    BlibliAndroidElementConstants.ID_CONTINUE_BTN);
 
             Utility.Delay(3);
             Utility.TapByCoordinates(1006, 136);
@@ -37,27 +40,28 @@ public class ThankYou {
 
             String paymentCode = Utility.GetElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/tv_order_id").getText();
+                    BlibliAndroidElementConstants.ID_TV_ORDER_ID).getText();
 
             Log.Info("Payment Code: " + paymentCode);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
-            String paymentCode = "";
+            String paymentCode = Constants.EMPTY;
 
             try {
-                Log.Debug("test 1");
-                WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                        ConfigConstants.DEFAULT_TIMEOUT);
-                WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(".//span[@class='ordernumber' and contains(text(), 'Nomor pesanan: ')]")));
+                WebElement el = Utility.ClickElementByXPathAndContainsText(
+                        Handler.GetCurrentWebDriver(),
+                        WebElementConstants.CLASS_SPAN,
+                        WebElementConstants.PARAM_CLASS,
+                        BlibliWebElementConstants.THANKYOU_ORDERNUMBER,
+                        BlibliWebElementConstants.THANKYOU_TEXT_NOMOR_PESANAN);
                 paymentCode = el.getText();
 
             } catch (Exception e) {
                 Log.Error(e);
             }
 
-            String[] noPesanan = paymentCode.split(" ");
+            String[] noPesanan = paymentCode.split(Constants.SPACE);
 
             Log.Info("Payment Code: " + noPesanan[2]);
 

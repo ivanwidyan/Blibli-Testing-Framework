@@ -42,7 +42,7 @@ public class SplashScreen {
                 try {
                     getStarted = Utility.GetElementById(
                             Handler.GetCurrentAppiumDriver(),
-                            "blibli.mobile.commerce:id/get_started_button",
+                            BlibliAndroidElementConstants.ID_GET_STARTED_BUTTON,
                             ConfigConstants.NO_TIMEOUT);
                 } catch (TimeoutException e) {}
 
@@ -50,16 +50,16 @@ public class SplashScreen {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/get_started_button");
+                    BlibliAndroidElementConstants.ID_GET_STARTED_BUTTON);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
-            /*try {
+            try {
                 Utility.ClickElementByCssSelector(
                         Handler.GetCurrentWebDriver(),
                         WebElementConstants.PARAM_CLASS,
                         BlibliWebElementConstants.HOME_AD, ConfigConstants.NO_TIMEOUT);
-            } catch (TimeoutException e) {}*/
+            } catch (TimeoutException e) {}
         }
         else {
             throw new SkipException("This test only for Android!");

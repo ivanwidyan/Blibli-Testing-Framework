@@ -2,6 +2,7 @@ package com.testing.blibli.purchase;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.AndroidElementConstants;
 import com.testing.constants.ConfigConstants;
@@ -25,11 +26,12 @@ public class Payment {
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
-            WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                    ConfigConstants.DEFAULT_TIMEOUT);
-            WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath(".//b[@class='payment-type-name ng-binding' and contains(text(), 'Transfer')]")));
-            el.click();
+            Utility.ClickElementByXPathAndContainsText(
+                    Handler.GetCurrentWebDriver(),
+                    WebElementConstants.CLASS_B,
+                    WebElementConstants.PARAM_CLASS,
+                    BlibliWebElementConstants.PAYMENT_TYPE_NAME,
+                    BlibliWebElementConstants.TEXT_TRANSFER);
 
             Utility.ClickElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
@@ -56,7 +58,7 @@ public class Payment {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/bt_understand");
+                    BlibliAndroidElementConstants.ID_BT_UNDERSTAND);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
@@ -77,7 +79,7 @@ public class Payment {
         if (ConfigConstants.PLATFORM_ANDROID.equalsIgnoreCase(platform)) {
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/tv_checkout");
+                    BlibliAndroidElementConstants.ID_TV_CHECKOUT);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
@@ -86,22 +88,20 @@ public class Payment {
                     WebElementConstants.PARAM_CLASS,
                     "angular-loading");
 
-            Log.Debug("test 1");
-            try {
+            /*try {
                 Utility.ClickElementByCssSelector(
                         Handler.GetCurrentWebDriver(),
-                        "span",
+                        WebElementConstants.CLASS_SPAN,
                         WebElementConstants.PARAM_CLASS,
                         "bli-keylock");
             } catch (Exception e) {
                 Log.Error(e);
             }
 
-            Log.Debug("test 2");
             try {
-            Utility.ClickElementByXPath(
+                Utility.ClickElementByXPath(
                     Handler.GetCurrentWebDriver(),
-                    "span",
+                    WebElementConstants.CLASS_SPAN,
                     WebElementConstants.PARAM_CLASS,
                     "bli-keylock");
             } catch (Exception e) {
@@ -109,22 +109,20 @@ public class Payment {
             }
 
             try {
-                Log.Debug("test 3");
                 WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
                         ConfigConstants.DEFAULT_TIMEOUT);
                 WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(".//label[@class='submit-checkout__label' and contains(text(), '  Bayar Sekarang')]")));
+                        By.xpath("//label[@class='submit-checkout__label' and contains(text(), 'Bayar Sekarang')]")));
                 el.click();
             } catch (Exception e) {
                 Log.Error(e);
-            }
+            }*/
 
             try {
-                Log.Debug("test 4");
                 WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
                         ConfigConstants.DEFAULT_TIMEOUT);
                 WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(".//label[@for='gdn-submit-checkout' and contains(text(), '  Bayar Sekarang')]")));
+                        By.xpath("//label[@for='gdn-submit-checkout' and contains(text(), 'Bayar Sekarang')]")));
                 el.click();
             } catch (Exception e) {
                 Log.Error(e);

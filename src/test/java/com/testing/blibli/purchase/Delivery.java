@@ -5,10 +5,12 @@ import com.testing.Utility;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.AndroidElementConstants;
 import com.testing.constants.ConfigConstants;
+import com.testing.constants.Constants;
 import com.testing.constants.WebElementConstants;
 import com.testing.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
@@ -25,14 +27,14 @@ public class Delivery {
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
-            Log.Debug("Pick courrier");
             try {
 
-                WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                        ConfigConstants.DEFAULT_TIMEOUT);
-                WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(".//label[@class='ng-binding bold' and contains(text(), 'Standard')]")));
-                el.click();
+                Utility.ClickElementByXPathAndContainsText(
+                        Handler.GetCurrentWebDriver(),
+                        WebElementConstants.CLASS_LABEL,
+                        WebElementConstants.PARAM_CLASS,
+                        BlibliWebElementConstants.DELIVERY_COURRIER,
+                        BlibliWebElementConstants.DELIVERY_STANDARD);
 
             } catch (Exception e) {
                 Log.Error(e);
@@ -53,26 +55,61 @@ public class Delivery {
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
+            WebElement test = null;
+            Actions actions = new Actions(Handler.GetCurrentWebDriver());
+
+            Log.Error("click pake xpath 1");
+
             try {
-                Utility.ClickElementByXPath(
+                test = Utility.ClickElementByXPath(
                     Handler.GetCurrentWebDriver(),
-                    "input",
+                    WebElementConstants.CLASS_INPUT,
                     WebElementConstants.PARAM_ID,
                     BlibliWebElementConstants.DELIVERY_NEXT_STEP);
             } catch (Exception e) {
                 Log.Error(e);
             }
 
-            Log.Debug("test 4");
+            Log.Error("test1: " + test);
+
+            actions.moveToElement(test).click().perform();
+
+            Log.Error("test1: clicked");
+
+//            Utility.Delay(30);
+
+            /*Log.Error("click pake id");
             try {
-                Utility.ClickElementByXPath(
-                    Handler.GetCurrentWebDriver(),
-                    "input",
-                    WebElementConstants.PARAM_VALUE,
-                    "Lanjutkan ke Pembayaran");
+                test = Utility.ClickElementById(
+                        Handler.GetCurrentWebDriver(),
+                        BlibliWebElementConstants.DELIVERY_NEXT_STEP);
             } catch (Exception e) {
                 Log.Error(e);
             }
+
+            Log.Error("test1: " + test);
+
+            actions.moveToElement(test).click().perform();
+
+            Log.Error("test1: clicked");*/
+
+            Log.Error("click pake xpath 2");
+            try {
+                test = Utility.ClickElementByXPath(
+                    Handler.GetCurrentWebDriver(),
+                    WebElementConstants.CLASS_INPUT,
+                    WebElementConstants.PARAM_VALUE,
+                    BlibliWebElementConstants.DELIVERY_LANJUTKAN_KE_PEMBAYARAN);
+            } catch (Exception e) {
+                Log.Error(e);
+            }
+
+            Log.Error("test2: " + test);
+
+            actions.moveToElement(test).click().perform();
+
+            Log.Error("test2: clicked");
+
 
         } else {
             throw new SkipException("Platform is not available");

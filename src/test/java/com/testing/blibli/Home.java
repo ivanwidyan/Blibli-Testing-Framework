@@ -34,7 +34,7 @@ public class Home {
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/av_key_search",
+                    BlibliAndroidElementConstants.ID_AV_KEY_SEARCH,
                     input);
 
             Utility.TapByCoordinates(1000, 1700);

@@ -9,6 +9,7 @@ package com.testing.blibli;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.ConfigConstants;
 import com.testing.constants.ElementConstants;
@@ -37,40 +38,40 @@ public class Login {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/rb_existing_user");
+                    BlibliAndroidElementConstants.ID_RB_EXISTING_USER);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/et_user_email_id",
+                    BlibliAndroidElementConstants.ID_ET_USER_EMAIL_ID,
                     username);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/et_user_password",
+                    BlibliAndroidElementConstants.ID_ET_USER_PASSWORD,
                     password);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/bt_register");
+                    BlibliAndroidElementConstants.ID_BT_REGISTER);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
             Utility.SendKeysElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    "input input--email",
+                    BlibliWebElementConstants.LOGIN_INPUT_EMAIL,
                     username);
 
             Utility.SendKeysElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    "input input--password",
+                    BlibliWebElementConstants.LOGIN_INPUT_PASSWORD,
                     password);
 
             Utility.ClickElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    "button-submit");
+                    BlibliWebElementConstants.LOGIN_BUTTON_SUBMIT);
 
         } else {
             throw new SkipException("Platform " + platform + "is not available for test");
