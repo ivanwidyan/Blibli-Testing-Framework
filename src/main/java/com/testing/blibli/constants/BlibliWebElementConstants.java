@@ -68,10 +68,12 @@ public class BlibliWebElementConstants {
     public final static String DELIVERY_STANDARD = "Standard";
 
     // Payment
+    public final static String TEXT_BAYAR_SEKARANG = "Bayar Sekarang";
     public final static String PAYMENT_TRANSFER = "gdn-payment-category-Transfer";
     public final static String PAYMENT_INDOMARET = "gdn-payment-category-Indomaret";
     public final static String PAYMENT_CHECKOUT = "gdn-submit-checkout";
     public final static String PAYMENT_TYPE_NAME = "payment-type-name ng-binding";
+    public final static String PAYMENT_LOADING = "angular-loading";
 
     // Payment - Transfer
     public final static String TEXT_TRANSFER = "Transfer";

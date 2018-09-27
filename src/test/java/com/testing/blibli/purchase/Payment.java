@@ -86,7 +86,7 @@ public class Payment {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    "angular-loading");
+                    BlibliWebElementConstants.PAYMENT_LOADING);
 
             /*try {
                 Utility.ClickElementByCssSelector(
@@ -118,19 +118,15 @@ public class Payment {
                 Log.Error(e);
             }*/
 
-            try {
-                WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                        ConfigConstants.DEFAULT_TIMEOUT);
-                WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//label[@for='gdn-submit-checkout' and contains(text(), 'Bayar Sekarang')]")));
-                el.click();
-            } catch (Exception e) {
-                Log.Error(e);
-            }
+            Utility.ClickElementByXPathAndContainsText(
+                    Handler.GetCurrentWebDriver(),
+                    WebElementConstants.CLASS_LABEL,
+                    WebElementConstants.PARAM_FOR,
+                    BlibliWebElementConstants.PAYMENT_CHECKOUT,
+                    BlibliWebElementConstants.TEXT_BAYAR_SEKARANG);
 
         } else {
             throw new SkipException("Platform is not available");
         }
     }
-
 }

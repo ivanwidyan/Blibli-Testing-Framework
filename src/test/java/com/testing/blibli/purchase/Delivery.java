@@ -58,8 +58,6 @@ public class Delivery {
             WebElement test = null;
             Actions actions = new Actions(Handler.GetCurrentWebDriver());
 
-            Log.Error("click pake xpath 1");
-
             try {
                 test = Utility.ClickElementByXPath(
                     Handler.GetCurrentWebDriver(),
@@ -70,11 +68,7 @@ public class Delivery {
                 Log.Error(e);
             }
 
-            Log.Error("test1: " + test);
-
             actions.moveToElement(test).click().perform();
-
-            Log.Error("test1: clicked");
 
 //            Utility.Delay(30);
 
@@ -93,7 +87,6 @@ public class Delivery {
 
             Log.Error("test1: clicked");*/
 
-            Log.Error("click pake xpath 2");
             try {
                 test = Utility.ClickElementByXPath(
                     Handler.GetCurrentWebDriver(),
@@ -104,12 +97,7 @@ public class Delivery {
                 Log.Error(e);
             }
 
-            Log.Error("test2: " + test);
-
             actions.moveToElement(test).click().perform();
-
-            Log.Error("test2: clicked");
-
 
         } else {
             throw new SkipException("Platform is not available");
