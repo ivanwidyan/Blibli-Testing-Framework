@@ -19,6 +19,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -202,7 +203,37 @@ public class Utility {
      */
     public static WebElement ClickElementByXPath(WebDriver driver, String element,
                                                  String param, String value, long timeout) {
-        String xpath = "//" + element + "[@" + param + "='" + value + "']";
+        String xpath = ".//" + element + "[@" + param + "='" + value + "']";
+        return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH,
+                CLICK_TRUE, NO_SENDKEYS, timeout);
+    }
+
+    /**
+     * This method used to find element by xpath and contains text and click with default timeout
+     * @param driver web driver
+     * @param element
+     * @param param
+     * @param value
+     * @return WebElement
+     */
+    public static WebElement ClickElementByXPathAndContainsText(WebDriver driver, String element,
+                                                                String param, String value, String text) {
+        return ClickElementByXPathAndContainsText(driver, element, param, value, text,
+                ConfigConstants.DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * This method used to find element by xpath and contains text and click with input timeout
+     * @param driver web driver
+     * @param element
+     * @param param
+     * @param value
+     * @param timeout in seconds
+     * @return WebElement
+     */
+    public static WebElement ClickElementByXPathAndContainsText(WebDriver driver, String element,
+                                                 String param, String value, String text, long timeout) {
+        String xpath = "//" + element + "[@" + param + "='" + value + "' and contains(text(), '" + text + "')]";
         return webElementUtility(driver, xpath, ElementConstants.FIND_ELEMENT_TYPE_XPATH,
                 CLICK_TRUE, NO_SENDKEYS, timeout);
     }

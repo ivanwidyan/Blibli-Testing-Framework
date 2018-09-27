@@ -2,6 +2,7 @@ package com.testing.blibli.purchase;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.AndroidElementConstants;
 import com.testing.constants.ConfigConstants;
@@ -54,24 +55,24 @@ public class Summary {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/auto_complete_text");
+                    BlibliAndroidElementConstants.ID_AUTO_COMPLETE_TEXT);
 
             Utility.ClickElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_TEXT,
-                    "" + quantity);
+                    Integer.toString(quantity));
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
             for (int i = 0; i < quantity; i++) {
 
-                // TODO: Appereantly this one is working, need to clean this up
-                WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                        ConfigConstants.DEFAULT_TIMEOUT);
-                WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath(".//div[@class='quantity__increase' and contains(text(), '+')]")));
-                el.click();
+                Utility.ClickElementByXPathAndContainsText(
+                        Handler.GetCurrentWebDriver(),
+                        WebElementConstants.CLASS_DIV,
+                        WebElementConstants.PARAM_CLASS,
+                        BlibliWebElementConstants.SUMMARY_QUANTITY,
+                        Constants.SYMBOL_PLUS);
 
             }
 
@@ -107,16 +108,16 @@ public class Summary {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/bt_buy_button");
+                    BlibliAndroidElementConstants.ID_BT_BUY_BUTTON);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
-            // TODO: Clean this up
-            WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                    ConfigConstants.DEFAULT_TIMEOUT);
-            WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath(".//button[@class='' and contains(text(), 'BELI SEKARANG')]")));
-            el.click();
+            Utility.ClickElementByXPathAndContainsText(
+                    Handler.GetCurrentWebDriver(),
+                    WebElementConstants.CLASS_BUTTON,
+                    WebElementConstants.PARAM_CLASS,
+                    Constants.EMPTY,
+                    BlibliWebElementConstants.SUMMARY_BELI_SEKARANG);
 
         } else {
             throw new SkipException("Platform is not available");

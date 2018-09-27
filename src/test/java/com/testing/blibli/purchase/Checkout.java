@@ -2,6 +2,7 @@ package com.testing.blibli.purchase;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.constants.ConfigConstants;
 import com.testing.logging.Log;
 import org.openqa.selenium.By;
@@ -22,7 +23,7 @@ public class Checkout {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/next_button");
+                    BlibliAndroidElementConstants.ID_NEXT_BUTTON);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 

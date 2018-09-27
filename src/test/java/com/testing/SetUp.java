@@ -9,10 +9,15 @@ package com.testing;
 
 import com.testing.blibli.constants.BlibliConfigConstants;
 import com.testing.constants.ConfigConstants;
+import com.testing.constants.Constants;
 import com.testing.logging.Log;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
 
 import java.net.URL;
@@ -31,7 +36,7 @@ public class SetUp {
     public void SetUp(String platform, @Optional String browser, @Optional String devicename,
                       @Optional String udid, @Optional String ip, @Optional String port) throws Exception {
 
-        String info = "";
+        String info;
 
         Log.Debug("Test platform: " + platform);
 
@@ -40,7 +45,7 @@ public class SetUp {
                 if (devicename == null)
                     devicename = ConfigConstants.DEVICE_NAME;
 
-                DesiredCapabilities capabilities = new DesiredCapabilities();
+                DesiredCapabilities capabilities = DesiredCapabilities.android();
                 capabilities.setCapability(ConfigConstants.CAPABILITIES_DEVICE_NAME, devicename);
 
                 capabilities.setCapability(ConfigConstants.CAPABILITIES_PLATFORM_NAME,
@@ -76,7 +81,17 @@ public class SetUp {
         } else if (platform.equalsIgnoreCase(ConfigConstants.PLATFORM_WEB)) {
             System.setProperty(ConfigConstants.GECKO_DRIVER_PROPERTY,
                     ConfigConstants.GECKO_DRIVER_PATH);
-            Handler.SetCurrentWebDriver(new FirefoxDriver());
+
+            if (ConfigConstants.BROWSER_FIREFOX.equalsIgnoreCase(browser))
+                Handler.SetCurrentWebDriver(new FirefoxDriver());
+            else if (ConfigConstants.BROWSER_SAFARI.equalsIgnoreCase(browser)) {
+                Handler.SetCurrentWebDriver(new SafariDriver());
+            } else if (ConfigConstants.BROWSER_CHROME.equalsIgnoreCase(browser)) {
+                System.setProperty(ConfigConstants.CHROME_DRIVER_PROPERTY,
+                        ConfigConstants.CHROME_DRIVER_PATH);
+
+                Handler.SetCurrentWebDriver(new ChromeDriver());
+            }
 
             Handler.GetCurrentWebDriver().manage().timeouts().implicitlyWait(
                     ConfigConstants.DEFAULT_TIMEOUT, TimeUnit.SECONDS);

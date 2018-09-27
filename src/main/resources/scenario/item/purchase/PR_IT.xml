@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="PR_IT" thread-count="1" parallel="false">
-    <test enabled="false" name="PR_IT_001 Purchase jaket kulit, select Kalong brand,
+    <test enabled="true" name="PR_IT_001 Purchase jaket kulit, select Kalong brand,
                 price min 1.000.000, Location Bogor,
                 order by Harga Termurah, Select first item,
                 pick first size, quantity 1, buy now, pay with transfer BankBNI,
                 print payment code">
 
         <parameter name="platform" value="web" />
+        <parameter name="browser" value="firefox" />
 
         <classes>
             <class name="com.testing.SetUp"/>
@@ -61,7 +62,7 @@
         </classes>
     </test>
 
-    <test enabled="true" name="PR_IT_002 Purchase tas laptop, select Tucano brand,
+    <test enabled="false" name="PR_IT_002 Purchase tas laptop, select Tucano brand,
                 price range between 300.000 - 1.000.000,
                 order by Produk Terpopuler, Select first item,
                 quantity 1, buy now, pay with Indomaret, print payment code">

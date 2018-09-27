@@ -12,6 +12,10 @@ public class WebElementConstants {
     public final static String CLASS_DIV = "div";
     public final static String CLASS_OPTION= "option";
     public final static String CLASS_BUTTON = "button";
+    public final static String CLASS_SPAN = "span";
+    public final static String CLASS_INPUT = "input";
+    public final static String CLASS_LABEL = "label";
+    public final static String CLASS_B = "b";
 
     // General Parameter
     public final static String PARAM_CLASS = "class";
@@ -21,6 +25,7 @@ public class WebElementConstants {
     public final static String PARAM_ID = "id";
     public final static String PARAM_NAME = "name";
     public final static String PARAM_DATA_SHIPPER_NAME = "data-shipper-name";
+    public final static String PARAM_FOR = "for";
 
     // Tabs
     public final static int FIRST_TABS = 0;

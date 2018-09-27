@@ -9,17 +9,13 @@ package com.testing.blibli;
 
 import com.testing.Handler;
 import com.testing.Utility;
+import com.testing.blibli.constants.BlibliAndroidElementConstants;
 import com.testing.blibli.constants.BlibliWebElementConstants;
 import com.testing.constants.AndroidElementConstants;
 import com.testing.constants.ConfigConstants;
 import com.testing.constants.Constants;
 import com.testing.constants.WebElementConstants;
-import com.testing.logging.Log;
-import org.aspectj.weaver.ast.And;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -36,7 +32,7 @@ public class Search {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/iv_sort_icon");
+                    BlibliAndroidElementConstants.ID_IV_SORT_ICON);
 
             Utility.ClickElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
@@ -49,14 +45,14 @@ public class Search {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    "ajax-loading");
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             Utility.ClickElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_ID,
                     BlibliWebElementConstants.SEARCH_SORT_ELEMENT);
 
-            String option = "";
+            String option = Constants.EMPTY;
 
             if (BlibliWebElementConstants.TEXT_PRODUK_REKOMENDASI.equalsIgnoreCase(input))
                 option = BlibliWebElementConstants.SORT_PRODUK_REKOMENDASI;
@@ -92,26 +88,26 @@ public class Search {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/tv_filter");
+                    BlibliAndroidElementConstants.ID_TV_FILTER);
 
             Utility.ClickElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_TEXT,
-                    "Brand");
+                    BlibliAndroidElementConstants.TEXT_BRAND);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/search_src_text",
+                    BlibliAndroidElementConstants.ID_SEARCH_SRC_TEXT,
                     input);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/rb_facet_name");
+                    BlibliAndroidElementConstants.ID_RB_FACET_NAME);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/search_filter_confirm");
+                    BlibliAndroidElementConstants.ID_SEARCH_FILTER_CONFIRM);
 
             Handler.GetCurrentAppiumDriver().hideKeyboard();
 
@@ -120,7 +116,7 @@ public class Search {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             Utility.SendKeysElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
@@ -128,17 +124,17 @@ public class Search {
                     BlibliWebElementConstants.FILTER_BRAND,
                     input);
 
-            // TODO: Clean this up
-            WebDriverWait wait = new WebDriverWait(Handler.GetCurrentWebDriver(),
-                    ConfigConstants.DEFAULT_TIMEOUT);
-            WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath(".//span[@class='filter-name' and contains(text(), '" + input + "')]")));
-            el.click();
+            Utility.ClickElementByXPathAndContainsText(
+                    Handler.GetCurrentWebDriver(),
+                    WebElementConstants.CLASS_SPAN,
+                    WebElementConstants.PARAM_CLASS,
+                    BlibliWebElementConstants.FILTER_NAME,
+                    input);
 
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
         } else {
             throw new SkipException("Platform is not available");
@@ -154,27 +150,27 @@ public class Search {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/tv_filter");
+                    BlibliAndroidElementConstants.ID_TV_FILTER);
 
             Utility.ClickElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_TEXT,
-                    "Harga");
+                    BlibliAndroidElementConstants.TEXT_HARGA);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/et_min_price",
+                    BlibliAndroidElementConstants.ID_ET_MIN_PRICE,
                     min);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/et_max_price",
+                    BlibliAndroidElementConstants.ID_ET_MAX_PRICE,
                     max);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/search_filter_confirm");
+                    BlibliAndroidElementConstants.ID_SEARCH_FILTER_CONFIRM);
 
             Handler.GetCurrentAppiumDriver().hideKeyboard();
 
@@ -184,7 +180,7 @@ public class Search {
                 Utility.WaitInvisibilityByCssSelector(
                         Handler.GetCurrentWebDriver(),
                         WebElementConstants.PARAM_CLASS,
-                        BlibliWebElementConstants.SEARCH_LOADING);
+                        BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
                 Utility.SendKeysElementByCssSelector(
                         Handler.GetCurrentWebDriver(),
@@ -196,7 +192,7 @@ public class Search {
                 Utility.WaitInvisibilityByCssSelector(
                         Handler.GetCurrentWebDriver(),
                         WebElementConstants.PARAM_CLASS,
-                        BlibliWebElementConstants.SEARCH_LOADING);
+                        BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
                 Utility.SendKeysElementByCssSelector(
                         Handler.GetCurrentWebDriver(),
@@ -217,26 +213,26 @@ public class Search {
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/tv_filter");
+                    BlibliAndroidElementConstants.ID_TV_FILTER);
 
             Utility.ClickElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_TEXT,
-                    "Lokasi Penjual");
+                    BlibliAndroidElementConstants.TEXT_LOKASI_PENJUAL);
 
             Utility.SendKeysElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/search_src_text",
+                    BlibliAndroidElementConstants.ID_SEARCH_SRC_TEXT,
                     input);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/rb_facet_name");
+                    BlibliAndroidElementConstants.ID_RB_FACET_NAME);
 
             Utility.ClickElementById(
                     Handler.GetCurrentAppiumDriver(),
-                    "blibli.mobile.commerce:id/search_filter_confirm");
+                    BlibliAndroidElementConstants.ID_SEARCH_FILTER_CONFIRM);
 
             Handler.GetCurrentAppiumDriver().hideKeyboard();
 
@@ -245,7 +241,7 @@ public class Search {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             Utility.ClickElementByCssSelector(
                     Handler.GetCurrentWebDriver(),
@@ -255,7 +251,7 @@ public class Search {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             String origin = "Origin-" + input;
 
@@ -284,7 +280,7 @@ public class Search {
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_RESOURCE_ID,
-                    "blibli.mobile.commerce:id/tv_product_name",
+                    BlibliAndroidElementConstants.ID_TV_PRODUCT_NAME,
                     Constants.FIRST_INDEX);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
@@ -292,7 +288,7 @@ public class Search {
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             Utility.ClickElementsByCssSelector(Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
@@ -313,20 +309,20 @@ public class Search {
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_RESOURCE_ID,
-                    "blibli.mobile.commerce:id/tv_product_name");
+                    BlibliAndroidElementConstants.ID_TV_PRODUCT_NAME);
 
             Utility.GetElementByXPath(
                     Handler.GetCurrentAppiumDriver(),
                     AndroidElementConstants.CLASS_ANDROID_WIDGET_TEXTVIEW,
                     AndroidElementConstants.PARAM_RESOURCE_ID,
-                    "blibli.mobile.commerce:id/tv_product_actual_price");
+                    BlibliAndroidElementConstants.ID_TV_PRODUCT_ACTUAL_PRICE);
 
         } else if (ConfigConstants.PLATFORM_WEB.equalsIgnoreCase(platform)) {
 
             Utility.WaitInvisibilityByCssSelector(
                     Handler.GetCurrentWebDriver(),
                     WebElementConstants.PARAM_CLASS,
-                    BlibliWebElementConstants.SEARCH_LOADING);
+                    BlibliWebElementConstants.SEARCH_AJAX_LOADING);
 
             PrintItemInformation (
                     Utility.GetElementsByCssSelector(Handler.GetCurrentWebDriver(),
